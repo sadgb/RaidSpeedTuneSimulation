@@ -60,11 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Champion1.cs" />
-    <Compile Include="Champion2.cs" />
-    <Compile Include="Champion3.cs" />
-    <Compile Include="Champion4.cs" />
-    <Compile Include="Champion5.cs" />
+    <Compile Include="Champion.cs" />
+    <Compile Include="Krisk.cs" />
+    <Compile Include="Seeker.cs" />
     <Compile Include="ClanBoss.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Main.cs" />

@@ -8,11 +8,11 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         {
             /* Check how many turns champions have taken compared to clan boss (how often this is called depends on your settings in config file) */
             // Make sure every champion takes atleast 2 turns for every clan boss turn
-            if (champion_1_turns_per_cb_turn < 2 ||
-                champion_2_turns_per_cb_turn < 2 ||
-                champion_3_turns_per_cb_turn < 2 ||
-                champion_4_turns_per_cb_turn < 2 ||
-                champion_5_turns_per_cb_turn < 2
+            if (champion1.turns_per_cb_turn < 2 ||
+                champion2.turns_per_cb_turn < 2 ||
+                champion3.turns_per_cb_turn < 2 ||
+                champion4.turns_per_cb_turn < 2 ||
+                champion5.turns_per_cb_turn < 2
             )
             {
                 SpeedTuned = false;
