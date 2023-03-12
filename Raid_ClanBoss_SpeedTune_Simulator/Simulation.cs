@@ -39,6 +39,15 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         {
             if (champion_1_speed + champion_2_speed + champion_3_speed + champion_4_speed + champion_5_speed > lowest_total_speeds) { return false; }
 
+            /*
+            if (champion_1_speed > lowest_biggest_speed ||
+                champion_2_speed > lowest_biggest_speed ||
+                champion_3_speed > lowest_biggest_speed ||
+                champion_4_speed > lowest_biggest_speed ||
+                champion_5_speed > lowest_biggest_speed 
+                ) { return false; }
+            */
+
             if (difficulty == "unm")
             {
                 clan_boss_speed = 190;
@@ -60,10 +69,10 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
             // TODO initialize champions
             champion1 = new Warcaster(champion_1_speed);
-            champion2 = new Seeker(champion_2_speed);
-            champion3 = new Renegate(champion_3_speed);
-            champion4 = new Champion(champion_4_speed);
-            champion5 = new Champion(champion_5_speed);
+            champion2 = new Apothecary(champion_2_speed);
+            champion3 = new PrinceKymer(champion_3_speed);
+            champion4 = new Champion(champion_4_speed, "Skullcrusher");
+            champion5 = new Champion(champion_5_speed, "Dracomorph");
 
 
             clan_boss_turns_taken = 0;
@@ -75,12 +84,21 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             {
                 // Add turn meter to champions and clan boss
                 clan_boss_turn_meter += clan_boss_speed;
-                champion1.TickTurnMeter();
-                champion2.TickTurnMeter();
-                champion3.TickTurnMeter();
-                champion4.TickTurnMeter();
-                champion5.TickTurnMeter();
 
+                foreach (var c in Champions())
+                {
+                    c.TickTurnMeter();
+                }
+                /*
+                var r = "CB: " + Math.Round(clan_boss_turn_meter * 100 / max_turn_meter, 1) + "%";
+
+                foreach (var c in Champions())
+                {
+                    r += "  " + c.log_name + ": " + Math.Round(c.turn_meter * 100 / max_turn_meter, 1) + "%";
+                }
+
+                DebugLog(r, 2);
+                */
 
                 // Check turns
                 if (clan_boss_turn_meter >= max_turn_meter || 
@@ -98,23 +116,43 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
                     {
                         champion1.Turn();
                     }
-                    else if (champion2.turn_meter >= clan_boss_turn_meter && champion2.turn_meter >= champion1.turn_meter && champion2.turn_meter >= champion3.turn_meter && champion2.turn_meter >= champion4.turn_meter && champion2.turn_meter >= champion5.turn_meter)
+                    else if (champion2.turn_meter >= clan_boss_turn_meter && 
+                        champion2.turn_meter >= champion1.turn_meter && 
+                        champion2.turn_meter >= champion3.turn_meter && 
+                        champion2.turn_meter >= champion4.turn_meter && 
+                        champion2.turn_meter >= champion5.turn_meter)
                     {
                         champion2.Turn();
                     }
-                    else if (champion3.turn_meter >= clan_boss_turn_meter && champion3.turn_meter >= champion1.turn_meter && champion3.turn_meter >= champion2.turn_meter && champion3.turn_meter >= champion4.turn_meter && champion3.turn_meter >= champion5.turn_meter)
+                    else if (champion3.turn_meter >= clan_boss_turn_meter && 
+                        champion3.turn_meter >= champion1.turn_meter && 
+                        champion3.turn_meter >= champion2.turn_meter && 
+                        champion3.turn_meter >= champion4.turn_meter && 
+                        champion3.turn_meter >= champion5.turn_meter)
                     {
                         champion3.Turn();
                     }
-                    else if (champion4.turn_meter >= clan_boss_turn_meter && champion4.turn_meter >= champion1.turn_meter && champion4.turn_meter >= champion2.turn_meter && champion4.turn_meter >= champion3.turn_meter && champion4.turn_meter >= champion5.turn_meter)
+                    else if (champion4.turn_meter >= clan_boss_turn_meter && 
+                        champion4.turn_meter >= champion1.turn_meter && 
+                        champion4.turn_meter >= champion2.turn_meter && 
+                        champion4.turn_meter >= champion3.turn_meter && 
+                        champion4.turn_meter >= champion5.turn_meter)
                     {
                         champion4.Turn();
                     }
-                    else if (champion5.turn_meter >= clan_boss_turn_meter && champion5.turn_meter >= champion1.turn_meter && champion5.turn_meter >= champion2.turn_meter && champion5.turn_meter >= champion3.turn_meter && champion5.turn_meter >= champion4.turn_meter)
+                    else if (champion5.turn_meter >= clan_boss_turn_meter && 
+                        champion5.turn_meter >= champion1.turn_meter && 
+                        champion5.turn_meter >= champion2.turn_meter && 
+                        champion5.turn_meter >= champion3.turn_meter && 
+                        champion5.turn_meter >= champion4.turn_meter)
                     {
                         champion5.Turn();
                     }
-                    else if (clan_boss_turn_meter >= champion1.turn_meter && clan_boss_turn_meter >= champion2.turn_meter && clan_boss_turn_meter >= champion3.turn_meter && clan_boss_turn_meter >= champion4.turn_meter && clan_boss_turn_meter >= champion5.turn_meter)
+                    else if (clan_boss_turn_meter >= champion1.turn_meter && 
+                        clan_boss_turn_meter >= champion2.turn_meter && 
+                        clan_boss_turn_meter >= champion3.turn_meter && 
+                        clan_boss_turn_meter >= champion4.turn_meter && 
+                        clan_boss_turn_meter >= champion5.turn_meter)
                     {
                         clan_boss_turns_taken++;
                         clan_boss_turn_meter = 0;

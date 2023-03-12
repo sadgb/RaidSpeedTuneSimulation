@@ -60,8 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Khatun.cs" />
     <Compile Include="Champion.cs" />
+    <Compile Include="PrinceKymar.cs" />
     <Compile Include="Renegate.cs" />
+    <Compile Include="Apothecary.cs" />
     <Compile Include="Warcaster.cs" />
     <Compile Include="Krisk.cs" />
     <Compile Include="Seeker.cs" />

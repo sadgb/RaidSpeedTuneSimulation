@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Raid_ClanBoss_SpeedTune_Simulator
 {
@@ -116,21 +112,21 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         }
         public virtual void PerformA2()
         {
-            Simulation.DebugLog(log_name + " A2.", 1);
+            //Simulation.DebugLog(log_name + " A2.", 1);
             A2_cooldown = A2_cooldown_max;
 
         }
 
         public virtual void PerformA3()
         {
-            Simulation.DebugLog(log_name + " A3.", 1);
+            //Simulation.DebugLog(log_name + " A3.", 1);
             A3_cooldown = A3_cooldown_max;
 
         }
 
         public virtual void PerformA4()
         {
-            Simulation.DebugLog(log_name + " A4.", 1);
+            //Simulation.DebugLog(log_name + " A4.", 1);
             A4_cooldown = A4_cooldown_max;
 
         }
@@ -138,7 +134,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public virtual void Basic_Attack()
         {
-            Simulation.DebugLog(log_name + " A1.", 1);
+            //Simulation.DebugLog(log_name + " A1.", 1);
 
         }
 
@@ -157,12 +153,12 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             decrease_speed_duration--;
             counter_attack_duration--;
 
-            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
+            //Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
             UseSkill();
-            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
+            //Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
 
             AfterTurn();
-            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
+            //Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
         }
 
         public virtual void UseSkill() {

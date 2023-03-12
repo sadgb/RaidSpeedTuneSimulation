@@ -2,17 +2,17 @@
 * Example of the champion Renegate
 *
 * Ability 2: doesnt matter
-* Ability 3: Decrease the cooldown of ally skills by 2 ( 7-6-5 turns cooldown )
+* Ability 3: Resets the cooldowns of all ally skills. Fills the Turn Meter of all allies except this Champion by 20%.
 */
 
 namespace Raid_ClanBoss_SpeedTune_Simulator
 {
-    public class Renegate : Champion
+    public class PrinceKymer : Champion
     { 
-        public Renegate(float speed, string log_name = null) : base(speed, log_name)
+        public PrinceKymer(float speed, string log_name = null) : base(speed, log_name)
         {
             A3_cooldown_max = 6;
-            A3_cooldown_delay = 1;
+            A3_cooldown_delay = 2;
             A3_cooldown = A3_cooldown_delay;
         }
 
@@ -27,7 +27,12 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             {
                 if (c != this)
                 {
-                    c.LowerCoolDowns(2);
+                    c.LowerCoolDowns(20);
+                    // Fills the Turn Meter of all allies by 20 %.
+                    // max_turn_meter = 1428.57;
+                    // 1428.57 / 100 * 20 = 285.714
+
+                    c.turn_meter += 285.714f;
                 }
             }
         }
