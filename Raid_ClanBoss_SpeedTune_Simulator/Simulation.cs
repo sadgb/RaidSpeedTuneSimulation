@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Activation;
 
 namespace Raid_ClanBoss_SpeedTune_Simulator
 {
@@ -13,11 +14,25 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         static float clan_boss_turn_meter;
         static int clan_boss_turns_taken;
 
+
         public static Champion champion1;
         public static Champion champion2;
         public static Champion champion3;
         public static Champion champion4;
         public static Champion champion5;
+
+        // level 0 - all moves and skills and buffs/debufs + CD
+        // level 1 - all moves and skills and buffs/debufs + CD
+        // level 1 - all moves and skill usages
+        // level 4 - simulation faileds
+        public static void DebugLog(String data, int level)
+        {
+            if (level >= log_level)
+            {
+                Console.WriteLine(data);
+            }
+        }
+
 
 
         public static bool Run_Simulation(string difficulty, float champion_1_speed, float champion_2_speed, float champion_3_speed, float champion_4_speed, float champion_5_speed)
@@ -44,9 +59,9 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             clan_boss_turn_meter = 0f;
 
             // TODO initialize champions
-            champion1 = new Krisk(champion_1_speed);
+            champion1 = new Warcaster(champion_1_speed);
             champion2 = new Seeker(champion_2_speed);
-            champion3 = new Champion(champion_3_speed);
+            champion3 = new Renegate(champion_3_speed);
             champion4 = new Champion(champion_4_speed);
             champion5 = new Champion(champion_5_speed);
 
@@ -144,11 +159,6 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
                             champion4.turns_per_cb_turn = 0;
                             champion5.turns_per_cb_turn = 0;
                         }
-
-                        if (clan_boss_turns_taken > speed_tuned_after_cb_attack + speed_tuned_turns)
-                        {
-                            running = false;
-                        }
                     }
                 }
             }
@@ -156,7 +166,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             return SpeedTuned;
         }
 
-        static Champion[] Champions()
+        public static Champion[] Champions()
         {
             Champion[] arr = { champion1, champion2, champion3, champion4, champion5 };
             return arr;

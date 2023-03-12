@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champion.cs" />
+    <Compile Include="Renegate.cs" />
+    <Compile Include="Warcaster.cs" />
     <Compile Include="Krisk.cs" />
     <Compile Include="Seeker.cs" />
     <Compile Include="ClanBoss.cs" />

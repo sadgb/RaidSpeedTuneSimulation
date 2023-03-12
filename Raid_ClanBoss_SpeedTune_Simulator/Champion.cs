@@ -26,8 +26,9 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public float speed { get; set; }
         public float turn_meter { get; set; }
+        public string log_name { get; set; }
 
-        public Champion(float speed)
+        public Champion(float speed, String log_name = null)
         {
             unkillable_duration = 0;
             block_debuffs_duration = 0;
@@ -44,7 +45,20 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             A3_cooldown_max = 9999;
             A4_cooldown_max = 9999;
 
+            A2_cooldown = A2_cooldown_delay;
+            A3_cooldown = A3_cooldown_delay;
+            A4_cooldown = A4_cooldown_delay;
+
             turns_per_cb_turn = 0;
+
+            if (log_name != null)
+            {
+
+                this.log_name = log_name;
+            } else
+            {
+                this.log_name = this.GetType().Name + "(" + this.speed + ")";
+            }
         }
 
         public void ExtendBuffs(int duration)
@@ -102,18 +116,21 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         }
         public virtual void PerformA2()
         {
+            Simulation.DebugLog(log_name + " A2.", 1);
             A2_cooldown = A2_cooldown_max;
 
         }
 
         public virtual void PerformA3()
         {
+            Simulation.DebugLog(log_name + " A3.", 1);
             A3_cooldown = A3_cooldown_max;
 
         }
 
         public virtual void PerformA4()
         {
+            Simulation.DebugLog(log_name + " A4.", 1);
             A4_cooldown = A4_cooldown_max;
 
         }
@@ -121,6 +138,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public virtual void Basic_Attack()
         {
+            Simulation.DebugLog(log_name + " A1.", 1);
 
         }
 
@@ -139,9 +157,12 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             decrease_speed_duration--;
             counter_attack_duration--;
 
+            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
             UseSkill();
+            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
 
             AfterTurn();
+            Simulation.DebugLog("Cooldowns: " + log_name + "A2_CD=" + A2_cooldown + " A3_CD=" + A3_cooldown, 0);
         }
 
         public virtual void UseSkill() {
@@ -170,11 +191,11 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
             LowerCoolDowns();
         }
 
-        public virtual void LowerCoolDowns()
+        public virtual void LowerCoolDowns(int duration = 1)
         {
-            A2_cooldown--;
-            A3_cooldown--;
-            A4_cooldown--;
+            A2_cooldown -= duration;
+            A3_cooldown -= duration;
+            A4_cooldown -= duration;
         }
     }
 }

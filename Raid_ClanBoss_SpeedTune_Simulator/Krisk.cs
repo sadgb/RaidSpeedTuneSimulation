@@ -9,7 +9,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 {
     public class Krisk : Champion
     { 
-        public Krisk(float speed) : base(speed)
+        public Krisk(float speed, string log_name = null) : base(speed, log_name)
         {
             A2_cooldown_max = 3;
             A2_cooldown_delay = 1;
@@ -22,6 +22,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public override void PerformA2()
         {
+            base.PerformA2();
             /**
             * Extends all buffs by 1 turn
             */
@@ -33,6 +34,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public override void PerformA3()
         {
+            base.PerformA3();
             /**
             * Places increase speed buff on every ally for 2 turns (does not place buff on himself)
             * This skill also places increase defence on this champion, but that is not important for the speed tune, so we can ignore it

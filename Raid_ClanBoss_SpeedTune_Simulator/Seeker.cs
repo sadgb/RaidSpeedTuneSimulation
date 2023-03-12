@@ -8,7 +8,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 {
     public class Seeker : Champion
     {
-        public Seeker(float speed) : base(speed)
+        public Seeker(float speed, string log_name = null) : base(speed, log_name)
         {
             A2_cooldown_max = 3;
             A2_cooldown_delay = 0;

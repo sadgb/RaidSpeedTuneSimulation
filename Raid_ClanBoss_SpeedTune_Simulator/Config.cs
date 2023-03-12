@@ -9,18 +9,19 @@
          * 3  =  Really quick search (81x faster), can easily miss some speed tunes
          * 4+ =  Unreliable search, but can be used to speed up massive simulations
         */
-        static int search_detail = 2;
+        static int search_detail = 1;
 
+        static int log_level = 6;
 
         /**
          * Speed ranges [min, max]
          * Only speeds between these ranges will be tested
         */
-        static int[] champion_1_speed_range = { 301, 301 };
-        static int[] champion_2_speed_range = { 300, 300 };
-        static int[] champion_3_speed_range = { 252, 252 };
-        static int[] champion_4_speed_range = { 251, 251 };
-        static int[] champion_5_speed_range = { 250, 250 };
+        static int[] champion_1_speed_range = { 250, 280 };
+        static int[] champion_2_speed_range = { 230, 280 };
+        static int[] champion_3_speed_range = { 230, 280 };
+        static int[] champion_4_speed_range = { 245,  245 };
+        static int[] champion_5_speed_range = { 222, 222 };
 
 
 
@@ -36,7 +37,6 @@
          * Speed tune must last until for x turns
         */
         static int speed_tuned_after_cb_attack = 6;
-        static int speed_tuned_turns = 15;
 
 
 
