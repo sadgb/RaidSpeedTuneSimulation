@@ -8,12 +8,20 @@
 namespace Raid_ClanBoss_SpeedTune_Simulator
 {
     public class PrinceKymer : Champion
-    { 
-        public PrinceKymer(float speed, string log_name = null) : base(speed, log_name)
+    {
+        public static int[,] AVAILABLE_DELAYS =   {
+                {9999, 0, 9999 },
+                {9999, 1, 9999 },
+                {9999, 2, 9999 },
+                {9999, 3, 9999 },
+                {9999, 4, 9999 },
+                {9999, 5, 9999 },
+                {9999, 6, 9999 },
+            };
+
+        public PrinceKymer(float speed, string log_name = null, int? A2_delay = null, int? A3_delay = null, int? A4_delay = null  ) : base(speed, log_name, A2_delay, A3_delay, A4_delay)
         {
             A3_cooldown_max = 6;
-            A3_cooldown_delay = 2;
-            A3_cooldown = A3_cooldown_delay;
         }
 
         public override void PerformA3()

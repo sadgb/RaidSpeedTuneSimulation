@@ -11,15 +11,16 @@
         */
         static int search_detail = 2;
 
-        static int log_level = 5;
+        public const int NO_LOG = 5;
+        public static int log_level = NO_LOG;
 
         /**
          * Speed ranges [min, max]
          * Only speeds between these ranges will be tested
         */
-        static int[] champion_1_speed_range = { 230, 310 };
-        static int[] champion_2_speed_range = { 230, 300 };
-        static int[] champion_3_speed_range = { 230, 300 };
+        static int[] champion_1_speed_range = { 300, 310 };
+        static int[] champion_2_speed_range = { 280, 300 };
+        static int[] champion_3_speed_range = { 280, 300 };
         static int[] champion_4_speed_range = { 230, 300 };
         static int[] champion_5_speed_range = { 200, 300 };
 

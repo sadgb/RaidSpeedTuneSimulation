@@ -5,14 +5,13 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 {
     public partial class Simulation
     {
-        static Random random = new Random();
         static string lowest_total_speeds_message = "No speed tuned speeds found";
         static bool running;
         static bool SpeedTuned;
         static float max_turn_meter = 1428.57f;
         static float clan_boss_speed = 190;
         static float clan_boss_turn_meter;
-        static int clan_boss_turns_taken;
+        public static int clan_boss_turns_taken;
 
 
         public static Champion champion1;
@@ -25,7 +24,7 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
         // level 1 - all moves and skills and buffs/debufs + CD
         // level 1 - all moves and skill usages
         // level 4 - simulation faileds
-        public static void DebugLog(String data, int level)
+        public static void DebugLog(string data, int level)
         {
             if (level >= log_level)
             {
@@ -35,18 +34,15 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
 
 
-        public static bool Run_Simulation(string difficulty, float champion_1_speed, float champion_2_speed, float champion_3_speed, float champion_4_speed, float champion_5_speed)
+        public static bool Run_Simulation(string difficulty, Champion c1, Champion c2, Champion c3, Champion c4, Champion c5)
         {
-            if (champion_1_speed + champion_2_speed + champion_3_speed + champion_4_speed + champion_5_speed > lowest_total_speeds) { return false; }
 
-            /*
-            if (champion_1_speed > lowest_biggest_speed ||
-                champion_2_speed > lowest_biggest_speed ||
-                champion_3_speed > lowest_biggest_speed ||
-                champion_4_speed > lowest_biggest_speed ||
-                champion_5_speed > lowest_biggest_speed 
-                ) { return false; }
-            */
+            champion1 = c1;
+            champion2 = c2;
+            champion3 = c3;
+            champion4 = c4;
+            champion5 = c5;
+
 
             if (difficulty == "unm")
             {
@@ -67,13 +63,6 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
             clan_boss_turn_meter = 0f;
 
-            // TODO initialize champions
-            champion1 = new Warcaster(champion_1_speed);
-            champion2 = new Apothecary(champion_2_speed);
-            champion3 = new PrinceKymer(champion_3_speed);
-            champion4 = new Champion(champion_4_speed, "Skullcrusher");
-            champion5 = new Champion(champion_5_speed, "Dracomorph");
-
 
             clan_boss_turns_taken = 0;
 
@@ -85,10 +74,12 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
                 // Add turn meter to champions and clan boss
                 clan_boss_turn_meter += clan_boss_speed;
 
-                foreach (var c in Champions())
-                {
-                    c.TickTurnMeter();
-                }
+                champion1.TickTurnMeter();
+                champion2.TickTurnMeter();
+                champion3.TickTurnMeter();
+                champion4.TickTurnMeter();
+                champion5.TickTurnMeter();
+
                 /*
                 var r = "CB: " + Math.Round(clan_boss_turn_meter * 100 / max_turn_meter, 1) + "%";
 

@@ -69,18 +69,22 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public static void ClanBoss()
         {
-            if (clan_boss_turns_taken % 3 == 1)
+            if (Simulation.log_level <= 1)
             {
-                DebugLog("Clann boss (" + clan_boss_turns_taken + ") AoE 1\n", 1);
+                if (clan_boss_turns_taken % 3 == 1)
+                {
+                    DebugLog("Clann boss (" + clan_boss_turns_taken + ") AoE 1\n", 1);
+                }
+                else if (clan_boss_turns_taken % 3 == 2)
+                {
+                    DebugLog("Clann boss (" + clan_boss_turns_taken + ") AoE 2\n", 1);
+                }
+                else
+                {
+                    DebugLog("Clann boss (" + clan_boss_turns_taken + ") STUN\n=================================\n\n", 1);
+                }
             }
-            else
-            if (clan_boss_turns_taken % 3 == 2)
-            {
-                DebugLog("Clann boss (" + clan_boss_turns_taken + ") AoE 2\n", 1);
-            } else
-            {
-                DebugLog("Clann boss (" + clan_boss_turns_taken + ") STUN\n=================================\n\n", 1);
-            }
+
 
 
             // Should work starting after first stun
@@ -111,7 +115,10 @@ namespace Raid_ClanBoss_SpeedTune_Simulator
 
         public static void MarkCurrentRunAsFailed()
         {
-          DebugLog("Failed at clan boss turn " + clan_boss_turns_taken, 4);
+            if (Simulation.log_level <= 4) {
+                DebugLog("Failed at clan boss turn " + clan_boss_turns_taken, 4);
+            }
+
           SpeedTuned = false;
           running = false;
         }
